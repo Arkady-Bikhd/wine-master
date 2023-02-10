@@ -34,10 +34,6 @@ env = Environment(
 
 template = env.get_template('template.html')
 time_duration = datetime.date.today().year - 1920
-w = get_wine_description()
-for ww, www in sorted(w.items()):
-    print(www)
-
 
 rendered_page = template.render(
     checked_time = time_duration,
