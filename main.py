@@ -27,24 +27,31 @@ def get_declension(year):
         return suffix[2]
     return suffix[0]
 
-env = Environment(
-    loader=FileSystemLoader('.'),
-    autoescape=select_autoescape(['html', 'xml'])
-)
-
-template = env.get_template('template.html')
-time_duration = datetime.date.today().year - 1920
-
-rendered_page = template.render(
-    checked_time = time_duration,
-    years_stamp = get_declension(time_duration),
-    wine_description = get_wine_description()
-)
-
-with open('index.html', 'w', encoding="utf8") as file:
-    file.write(rendered_page)
+def main():
+    env = Environment(
+        loader=FileSystemLoader('.'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
 
 
+    template = env.get_template('template.html')
+    time_duration = datetime.date.today().year - 1920
 
-server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
-server.serve_forever()
+    rendered_page = template.render(
+        checked_time = time_duration,
+        years_stamp = get_declension(time_duration),
+        wine_description = get_wine_description()   
+    )
+
+    with open('index.html', 'w', encoding="utf8") as file:
+        file.write(rendered_page)
+
+
+
+    server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
+    server.serve_forever()
+
+
+if __name__ == '__main__':
+
+    main()
