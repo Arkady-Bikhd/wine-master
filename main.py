@@ -35,7 +35,8 @@ def main():
 
 
     template = env.get_template('template.html')
-    time_duration = datetime.date.today().year - 1920
+    foundation_year = 1920
+    time_duration = datetime.date.today().year - foundation_year
 
     rendered_page = template.render(
         checked_time = time_duration,
