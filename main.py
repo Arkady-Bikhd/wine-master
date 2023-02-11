@@ -19,13 +19,12 @@ def get_wine_description():
 
 def get_declension(year): 
 
-    remainder = year % 100
-    suffix = ["лет", "год", "года"] 
+    remainder = year % 100    
     if remainder % 10 == 1 and remainder != 11: 
-        return suffix[1] 
+        return "год" 
     if remainder % 10 in {2, 3, 4} and not (remainder in {12, 13, 14}): 
-        return suffix[2]
-    return suffix[0]
+        return "года"
+    return "лет"
 
 def main():
     env = Environment(
