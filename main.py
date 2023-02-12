@@ -34,7 +34,7 @@ def main():
         autoescape=select_autoescape(['html', 'xml'])
     )
 
-    wine_filename = create_parser()
+    wine_file = get_initial_args()
 
     template = env.get_template('template.html')
     foundation_year = 1920
@@ -43,7 +43,7 @@ def main():
     rendered_page = template.render(
         checked_time = time_duration,
         years_stamp = get_declension(time_duration),
-        wine_description = get_wine_description(wine_filename)   
+        wine_description = get_wine_description(wine_file)   
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
@@ -55,7 +55,7 @@ def main():
     server.serve_forever()
 
 
-def create_parser():
+def get_initial_args():
      
     parser = argparse.ArgumentParser(
         description='Новое русское вино',               
